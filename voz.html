@@ -1,0 +1,51 @@
+<html>
+<title>Reconocimiento de voz </title>
+<body>
+<h1> Reconocimiento de voz</h1>
+<h3> Lea despacio las siguientes palabras: ROJO,  VERDE,  AZUL,  NEGRO,  BLANCO,  AMARILLO</h3>
+<h3>y mire con atención la pantalla.</h3>
+<div id="colores" style="width:100%; height:100%;"></div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.4.0/annyang.min.js"></script>
+<script>
+if(annyang){
+	var comando = {
+		'saludo': function(){
+			alert("Hola buenos dias");
+		},
+		'magenta':function(){
+			var color = document.getElementById("colores");
+			color.style.backgroundColor = '#FF00FF';
+		},
+		'blanco':function(){
+			var color = document.getElementById("colores");
+			color.style.backgroundColor = '#FFFFFF';
+		},
+		'negro':function(){
+			var color = document.getElementById("colores");
+			color.style.backgroundColor = '#000000';
+		},
+		'amarillo':function(){
+			var color = document.getElementById("colores");
+			color.style.backgroundColor = '#FFFF00';
+		},		
+		'azul':function(){
+			var color = document.getElementById("colores");
+			color.style.backgroundColor = '#040FFA';
+		},
+		'rojo':function(){
+			var color = document.getElementById("colores");
+			color.style.backgroundColor = '#FA1604';
+		},
+		'verde':function(){
+			var color = document.getElementById("colores");
+			color.style.backgroundColor = '#0EA005';
+		}				
+	}
+	annyang.setLanguage("es-MX");
+	annyang.addCommands(comando);
+	annyang.debug();
+	annyang.start({continuous:false});
+}
+</script>
+</body>
+</html>

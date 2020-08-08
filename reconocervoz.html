@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reconocimiento de Voz Prueba</title>
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  </head>
+<body>
+  <h1>Proyecto de Prueba de Reconocimiento de Voz Con GOOGLE</h1>
+  <div id="texto"></div>
+  <button onclick="dictado();"><i class="fa fa-microphone-slash"></i></button>
+
+  <script>
+
+var reconocimientoVoz;
+var interim_transcript = '';
+
+    if(!("webkitSpeechRecognition" in window)){
+      alert("no podemos utilizar la API de reconocimiento de voz");
+    } else {
+
+     reconocimientoVoz = new webkitSpeechRecognition();
+     reconocimientoVoz.lang = "es-EC";
+     reconocimientoVoz.continuos = true;
+     reconocimientoVoz.interimResults = true;
+
+    // reconocimientoVoz.onresult = function(event) {
+    //     for (var i = event.resultIndex; i < event.results.length; ++i) {
+    //         interim_transcript += event.results[i][0].transcript;
+    //         document.getElementById("texto").innerHTML = event.results[i][0].transcript;
+    //         console.log(interim_transcript);
+    //       }
+    //   };
+      
+
+     reconocimientoVoz.onresult = function(e) {
+      document.getElementById("texto").innerHTML = e.results[0][0].transcript;
+     }
+
+      
+        document.getElementsByClassName("fa")[0].className = "fa fa-microphone";
+        reconocimientoVoz.start();
+        document.getElementById("texto").innerHTML = interim_transcript;
+        document.getElementsByClassName("fa")[0].className = "fa fa-microphone-slash";
+
+    }
+
+
+  </script>
+</body>
+</html>
